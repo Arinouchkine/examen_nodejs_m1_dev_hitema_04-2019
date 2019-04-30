@@ -26,9 +26,9 @@ module.exports = class PeopleService {
         else
         {
             const peopleIndex = this.peoples.filter(
-                people => people[Object.keys(filters)[0]]===filter[Object.keys(filters)[0]]
+                people => people[Object.keys(filters)[0]]===filters[Object.keys(filters)[0]]//comprend pas pourquio ça blocker
             );
-            console.log(Object.keys(filters)[0]);
+            console.log(peopleIndex);//a regarder ques-ce qu'on obtien et a modifier
             return peopleIndex;
         }
     }
