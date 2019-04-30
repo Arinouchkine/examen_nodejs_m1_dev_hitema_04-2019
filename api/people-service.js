@@ -16,11 +16,20 @@ module.exports = class PeopleService {
         return {isModified: true};
     }
     
-    getPeople(filters = null) {
+    getPeople(filters) {
         // To be implemented!
-        if(filters === null)
+        console.log(Object.keys(filters).length);
+        if(Object.keys(filters).length === 0)
         {
-            return Promise.resolve(this.peoples);
+            return this.peoples;
+        }
+        else
+        {
+            const peopleIndex = this.peoples.filter(
+                people => people[Object.keys(filters)[0]]===filter[Object.keys(filters)[0]]
+            );
+            console.log(Object.keys(filters)[0]);
+            return peopleIndex;
         }
     }
 }

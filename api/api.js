@@ -8,12 +8,22 @@ const v1 = express.Router();
 // To be implemented!
 
 app.use('/api/v1', v1);
+/*
+v1.get('/people', async (request, response) => {
+    try {
+        const people = await peopleService.getPeople();
+        response.send(people);
+    } catch (error) {
+        response.sendStatus(HttpStatus.NOT_FOUND).end(error);
+    }
+});*/
 
-v1.get('/message/:filter',  (request, response) => {
-    const filter = request.params.filter;
+v1.get('/people',  (request, response) => {
+    const filter = request.query;
+    console.log(filter);
     try {
         const people = peopleService.getPeople(filter);
-        people ? response.sendStatus(HttpStatus.OK).send(people) : response.sendStatus(HttpStatus.NOT_FOUND);
+         response.send(people);
     } catch (error) {
         response.sendStatus(HttpStatus.NOT_FOUND).end(error);
     }
@@ -27,7 +37,6 @@ v1.put('/people/:id',   (request, response) => {
         if (!result.isModified) return response.sendStatus(HttpStatus.NOT_FOUND);
         response.sendStatus(HttpStatus.OK);
     } catch (error) {
-        console.log('error occurs: ', error);
         response.sendStatus(HttpStatus.NOT_FOUND).end(error);
     }
 });
