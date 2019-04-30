@@ -6,10 +6,21 @@ module.exports = class PeopleService {
     }
 
     updatePeople(id, people) {
-        // To be implemented!
+
+        const peopleIndex = this.peoples.findIndex(
+            people => people.id === id
+        );
+        if(peopleIndex === -1)return Promise.reject('invalide id');
+
+        this.peoples[peopleIndex] = people;
+        return {isModified: true};
     }
     
-    getPeople(filters) {
+    getPeople(filters = null) {
         // To be implemented!
+        if(filters === null)
+        {
+            return Promise.resolve(this.peoples);
+        }
     }
 }
